@@ -1,25 +1,27 @@
-import React, { Component } from "react";
-import RepositoryItem from "../../components/RepositoryItem";
-import { DispatchProps } from "../../models/interfaces/dispatch";
-import { StateProps } from "../../models/interfaces/state";
+import React, { Component, FormEvent } from "react";
+import Button from "../../components/Button";
+import { Input } from "../../components/Input";
 
-type Props = StateProps & DispatchProps;
-
-class Auth extends Component<Props> {
-  componentDidMount() {
-    const { loadRequest } = this.props;
-    loadRequest();
+export class Auth extends Component {
+  componentDidMount() {}
+  private submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
   }
-
   render() {
-    const { repositories } = this.props;
-
     return (
-      <ul>
-        {repositories.map((repository) => (
-          <RepositoryItem key={repository.id} repository={repository} />
-        ))}
-      </ul>
+      <div>
+        <form onSubmit={(event) => this.submit(event)}>
+          <Input
+            id={"1"}
+            label="Field label"
+            predicted="California"
+            locked={false}
+            active={false}
+          />
+          <br />
+          <Button>ENTRAR</Button>
+        </form>
+      </div>
     );
   }
 }

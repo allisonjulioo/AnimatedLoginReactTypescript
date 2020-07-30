@@ -1,0 +1,15 @@
+@import "../../styles/index.scss";
+
+#button {
+  cursor: pointer;
+  background: $secondary;
+  color: $white;
+  min-width: $default-size * 60;
+  height: $default-size * 14;
+  border-radius: 2px;
+  border: none;
+  margin: $default-size;
+  span {
+    font-size: $default-size * 3;
+  }
+}

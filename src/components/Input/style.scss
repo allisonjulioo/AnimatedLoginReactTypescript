@@ -1,0 +1,98 @@
+@import "../../styles/index.scss";
+
+#input {
+  .field {
+    width: 100%;
+    height: $default-size * 14;
+    border-radius: $default-size;
+    position: relative;
+    background-color: rgba($tertiary, 0.3);
+    transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out;
+  }
+
+  .field:hover {
+    background-color: rgba($tertiary, 0.45);
+    box-shadow: 0px $default-size $default-size * 5 0px rgba($dark, 0.05);
+  }
+
+  .field.active {
+    background-color: $white;
+    box-shadow: 0px $default-size $default-size * 5 0px rgba($dark, 0.2);
+  }
+
+  .field.active input {
+    padding: $default-size * 6 $default-size * 4 $default-size * 2 $default-size *
+      4;
+  }
+
+  .field.active input + label {
+    top: $default-size;
+    opacity: 1;
+    color: $primary;
+  }
+
+  .field.locked {
+    pointer-events: none;
+  }
+
+  .field input {
+    width: 100%;
+    height: $default-size * 14;
+    position: relative;
+    padding: 0px $default-size * 4;
+    border: none;
+    border-radius: $default-size;
+    font-size: $default-size * 4;
+    font-weight: 400;
+    line-height: normal;
+    background-color: transparent;
+    color: $black;
+    outline: none;
+    box-shadow: 0px $default-size $default-size * 5 0px transparent;
+    transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out,
+      0.1s padding ease-in-out;
+    -webkit-appearance: none;
+  }
+
+  .field input::-webkit-input-placeholder {
+    color: rgba($white, 0.8);
+  }
+  .field input::-moz-placeholder {
+    color: rgba($white, 0.8);
+  }
+  .field input:-ms-input-placeholder {
+    color: rgba($white, 0.8);
+  }
+  .field input:-moz-placeholder {
+    color: rgba($white, 0.8);
+  }
+
+  .field input + label {
+    position: absolute;
+    top: $default-size * 6;
+    left: $default-size * 4;
+    font-size: $default-size * 3;
+    font-weight: 600;
+    line-height: $default-size * 6;
+    color: $white;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.1s all ease-in-out;
+  }
+
+  .field input + label.error {
+    color: #ec392f;
+  }
+
+  .field p.predicted {
+    position: absolute;
+    top: $default-size * 2;
+    left: $default-size * 4;
+    font-size: $default-size * 4;
+    font-weight: 400;
+    line-height: $default-size * 6;
+    color: $tertiary;
+    opacity: 1;
+    pointer-events: none;
+  }
+}

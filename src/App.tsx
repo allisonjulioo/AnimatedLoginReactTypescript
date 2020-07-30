@@ -1,6 +1,4 @@
 import React from "react";
-import RepositoryList from "./components/RepositoryList";
+import { Auth } from "./views/Auth";
 
-const App = () => <RepositoryList />;
-
-export default App;
+export default () => <Auth />;
