@@ -1,98 +1,116 @@
 @import "../../styles/index.scss";
 
+$animation: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
 #input {
   .field {
     width: 100%;
     height: $default-size * 14;
     border-radius: $default-size;
     position: relative;
-    background-color: rgba($tertiary, 0.3);
-    transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out;
-  }
+    margin: $default-size * 8 0;
+    border-bottom: 1px solid rgba($tertiary, 0.1);
+    transition: 0.8s background-color $animation, 0.8s transform $animation;
 
-  .field:hover {
-    background-color: rgba($tertiary, 0.45);
-    box-shadow: 0px $default-size $default-size * 5 0px rgba($dark, 0.05);
+    &.focused {
+    }
+    ::placeholder {
+      color: transparent;
+    }
+    &.active {
+      z-index: +20;
+      input {
+        padding: $default-size * 6 $default-size * 4 $default-size * 2
+          $default-size * 8;
+      }
+      ::placeholder {
+        color: transparent;
+      }
+      .preamble {
+        width: 100%;
+      }
+      label {
+        top: $default-size;
+        opacity: 1;
+        color: $primary;
+      }
+    }
+    &.locked {
+      pointer-events: none;
+    }
+    input {
+      width: 100%;
+      height: $default-size * 14;
+      position: relative;
+      padding: 0px $default-size * 8;
+      border: none;
+      border-radius: $default-size;
+      font-size: $default-size * 3;
+      font-weight: 300;
+      line-height: normal;
+      background-color: transparent;
+      color: $tertiary;
+      outline: none;
+      box-shadow: 0px $default-size $default-size * 5 0px transparent;
+      transition: 0.6s background-color $animation, 0.6s box-shadow $animation,
+        0.1s padding $animation;
+      -webkit-appearance: none;
+      &::-webkit-input-placeholder {
+        color: rgba($white, 0.8);
+      }
+      &::-moz-placeholder {
+        color: rgba($white, 0.8);
+      }
+      &:-ms-input-placeholder {
+        color: rgba($white, 0.8);
+      }
+      &:-moz-placeholder {
+        color: rgba($white, 0.8);
+      }
+    }
+    label {
+      position: absolute;
+      top: $default-size * 6;
+      left: $default-size * 8;
+      font-size: $default-size * 3;
+      font-weight: 600;
+      line-height: $default-size * 6;
+      color: $white;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.5s all $animation;
+      &.error {
+        color: #ec392f;
+      }
+    }
+    .predicted {
+      position: absolute;
+      top: $default-size * 2;
+      left: $default-size * 8;
+      font-size: $default-size * 4;
+      font-weight: 400;
+      line-height: $default-size * 6;
+      color: $tertiary;
+      opacity: 1;
+      pointer-events: none;
+    }
   }
-
-  .field.active {
-    background-color: $white;
-    box-shadow: 0px $default-size $default-size * 5 0px rgba($dark, 0.2);
-  }
-
-  .field.active input {
-    padding: $default-size * 6 $default-size * 4 $default-size * 2 $default-size *
-      4;
-  }
-
-  .field.active input + label {
-    top: $default-size;
-    opacity: 1;
-    color: $primary;
-  }
-
-  .field.locked {
-    pointer-events: none;
-  }
-
-  .field input {
-    width: 100%;
-    height: $default-size * 14;
-    position: relative;
-    padding: 0px $default-size * 4;
-    border: none;
-    border-radius: $default-size;
-    font-size: $default-size * 4;
-    font-weight: 400;
-    line-height: normal;
-    background-color: transparent;
-    color: $black;
-    outline: none;
-    box-shadow: 0px $default-size $default-size * 5 0px transparent;
-    transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out,
-      0.1s padding ease-in-out;
-    -webkit-appearance: none;
-  }
-
-  .field input::-webkit-input-placeholder {
-    color: rgba($white, 0.8);
-  }
-  .field input::-moz-placeholder {
-    color: rgba($white, 0.8);
-  }
-  .field input:-ms-input-placeholder {
-    color: rgba($white, 0.8);
-  }
-  .field input:-moz-placeholder {
-    color: rgba($white, 0.8);
-  }
-
-  .field input + label {
+  .preamble {
     position: absolute;
-    top: $default-size * 6;
-    left: $default-size * 4;
-    font-size: $default-size * 3;
-    font-weight: 600;
-    line-height: $default-size * 6;
-    color: $white;
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.1s all ease-in-out;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    height: 1px;
+    display: block;
+    background: $primary;
+    width: 0px;
+    transform-origin: center;
+    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
-
-  .field input + label.error {
-    color: #ec392f;
-  }
-
-  .field p.predicted {
+  .icon {
     position: absolute;
-    top: $default-size * 2;
-    left: $default-size * 4;
-    font-size: $default-size * 4;
-    font-weight: 400;
-    line-height: $default-size * 6;
-    color: $tertiary;
-    opacity: 1;
-    pointer-events: none;
+    left: 0;
+    bottom: 13px;
   }
 }

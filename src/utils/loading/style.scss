@@ -1,0 +1,17 @@
+@import "../../styles/index.scss";
+
+#loading {
+  z-index: +800;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin: auto;
+  transform: scale(0.1) translate(-50%, -50%) !important;
+  transform-origin: 0 0 !important;
+  path {
+    fill: $primary;
+  }
+  g {
+    fill: $primary;
+  }
+}

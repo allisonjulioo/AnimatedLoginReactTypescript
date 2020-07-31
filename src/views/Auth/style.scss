@@ -1,0 +1,25 @@
+@import "../../styles/index.scss";
+#auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  min-height: 100vh;
+  .container {
+    max-width: 280px;
+    .head {
+      text-align: center;
+      h4 {
+        margin: $default-size * 8 0;
+      }
+      span {
+        font-weight: 100;
+        display: block;
+        font-size: $default-size * 3;
+        margin: $default-size * 8 0;
+      }
+    }
+    .content {
+    }
+  }
+}

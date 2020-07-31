@@ -1,14 +1,36 @@
-
 html,
 body {
   width: 100%;
+  min-height: 100vh;
+}
+#root {
+  min-height: 100vh;
 }
 body {
-  background: $tertiary;
+  background: $dark;
 }
 * {
+  color: $white;
   outline: none;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+.path-1 {
+  fill: lighten($primary, 10%);
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: fill 2s ease infinite;
+}
+@keyframes fill {
+  0% {
+    fill: darken($primary, 0);
+  }
+  50% {
+    fill: darken($primary, 10%);
+  }
+  100% {
+    fill: darken($primary, 0);
+  }
 }

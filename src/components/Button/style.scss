@@ -2,14 +2,44 @@
 
 #button {
   cursor: pointer;
-  background: $secondary;
   color: $white;
+  background: $primary;
+  border: none;
   min-width: $default-size * 60;
   height: $default-size * 14;
   border-radius: 2px;
-  border: none;
+  width: 100%;
   margin: $default-size;
-  span {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .children {
+    z-index: +2;
     font-size: $default-size * 3;
+    transition: all 0.1s ease;
+  }
+  .ripple {
+    z-index: 1;
+    background: darken($primary, 6%);
+    transition: all 0.2s ease;
+    display: block;
+    position: absolute;
+    border-radius: 30px;
+    width: 80%;
+    height: 100%;
+    opacity: 0;
+  }
+  &:hover {
+    color: $white;
+    .children {
+      color: $white;
+    }
+    .ripple {
+      border-radius: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+    }
   }
 }
