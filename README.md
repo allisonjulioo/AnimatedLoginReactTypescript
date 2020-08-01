@@ -1,7 +1,7 @@
 # README #
 
 
-#MUITO IMPORTANTE ANTES DE QUALQUER COISA
+# MUITO IMPORTANTE ANTES DE QUALQUER COISA
 
 ## Estou usando uma lib de animações "FRAMER MOTION" ela está com um bug que deixa a aplicação incessível 
 ## Eu resolvi de uma forma meio gambiarra pelo tempo que tive para desenvovler, não deu para criar um versão corrigida do código
