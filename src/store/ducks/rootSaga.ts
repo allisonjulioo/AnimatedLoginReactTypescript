@@ -1,18 +1,17 @@
 import { all, takeLatest } from 'redux-saga/effects';
-import { RepositoriesTypes } from '../../models/types/types';
-import { Sagas } from './repositories/sagas';
+import { AuthTypes } from '../../models/types/auth';
+import { EnterpriseTypes } from '../../models/types/types';
+import { AuthSaga } from './auth/sagas';
+import { Sagas } from './enterprises/sagas';
 
 const sagas: Sagas = new Sagas();
+const auth: AuthSaga = new AuthSaga();
 export class RootSaga extends Sagas {
-  /**
-  * RootSaga
-  */
-  constructor() {
-    super();
-  }
-  public * rootSaga() {
+  public * rootSaga(type: void) {
     return yield all([
-      takeLatest(RepositoriesTypes.LOAD_REQUEST, () => sagas.load()),
+      takeLatest(EnterpriseTypes.REQUEST, () => sagas.getListEnterprises()),
+      takeLatest(AuthTypes.LOGIN, (data) => auth.login(data)),
+      takeLatest(AuthTypes.LOGOUT, () => auth.logout()),
     ]);
   }
 

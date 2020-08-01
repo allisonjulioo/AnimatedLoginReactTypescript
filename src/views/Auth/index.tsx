@@ -2,34 +2,34 @@ import { motion } from "framer-motion";
 import React, { Component, FormEvent } from "react";
 import Button from "../../components/Button";
 import { Input } from "../../components/Input";
+import { RequestAuth } from "../../models/enum/request-auth";
+import { IAnimation } from "../../models/interfaces/animation";
+import { DispatchProps } from "../../models/interfaces/dispatch";
+import { StateProps } from "../../models/interfaces/state";
+import store from "../../store";
+import { login } from "../../store/ducks/auth/actions";
 import Loading from "../../utils/loading";
 import Logo from "../../utils/logo";
 import "./style.scss";
 
-export interface IAnimation {
-  isVisible: boolean;
-  isOpen: boolean;
-}
-
-const variants = {
-  open: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      y: { stiffness: 1000, velocity: -100 },
-    },
-  },
-  closed: {
-    y: 50,
-    opacity: 0,
-    transition: {
-      y: { stiffness: 1000 },
-    },
-  },
-};
-
 export class Auth extends Component<any, IAnimation> {
-  constructor(props?: any) {
+  private variants = {
+    open: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        y: { stiffness: 1000, velocity: -100 },
+      },
+    },
+    closed: {
+      y: 50,
+      opacity: 0,
+      transition: {
+        y: { stiffness: 1000 },
+      },
+    },
+  };
+  constructor(props: StateProps & DispatchProps) {
     super(props);
     this.state = {
       isVisible: false,
@@ -40,29 +40,43 @@ export class Auth extends Component<any, IAnimation> {
     setTimeout(() => {
       this.setState({ isOpen: true });
     }, 2000);
-  }
+    const { loadRequest } = this.props;
 
+    loadRequest();
+  }
+  //
   private submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    store.dispatch(login(RequestAuth));
+    console.log(event)
+    // this.setState({ isOpen: false });
   }
 
   render() {
     const { isVisible, isOpen } = this.state;
     return (
       <div id="auth">
-        {!isOpen && <Loading />}
+        <motion.section
+          initial={false}
+          animate={!isOpen ? "open" : "closed"}
+          variants={this.variants}
+        >
+          <Loading />
+        </motion.section>
         <motion.div
           className="container"
           initial={false}
           animate={isOpen ? "open" : "closed"}
-          variants={variants}
+          variants={this.variants}
         >
           <motion.div className="head">
             <figure className="branding">
               <Logo />
             </figure>
-            <motion.h4 variants={variants}>BEM-VINDO AO EMPRESAS</motion.h4>
-            <motion.span variants={variants}>
+            <motion.h4 variants={this.variants}>
+              BEM-VINDO AO EMPRESAS
+            </motion.h4>
+            <motion.span variants={this.variants}>
               Lorem ipsum dolor sit amet, contetur adipiscing elit. Nunc
               accumsan.
             </motion.span>
@@ -74,7 +88,7 @@ export class Auth extends Component<any, IAnimation> {
                 id={"1"}
                 label="E-mail"
                 predicted="California"
-                locked={true}
+                locked={false}
                 active={false}
               />
               <Input
@@ -85,10 +99,7 @@ export class Auth extends Component<any, IAnimation> {
                 locked={false}
                 active={false}
               />
-              <br />
-              <Button onClick={() => this.setState({ isOpen: !isOpen })}>
-                ENTRAR
-              </Button>
+              <Button onClick={(event) => this.submit(event)}>ENTRAR</Button>
             </form>
           </div>
         </motion.div>

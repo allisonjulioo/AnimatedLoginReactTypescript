@@ -1,5 +1,5 @@
-import { Repository } from "../types/types";
+import { Enterprise } from "../classes/enterprise";
 
 export interface StateProps {
-  repositories: Repository[];
+  enterprises: Enterprise[];
 }
