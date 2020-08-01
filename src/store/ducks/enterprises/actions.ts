@@ -3,8 +3,8 @@ import { Enterprise } from '../../../models/classes/enterprise';
 import { EnterpriseTypes } from '../../../models/types/types';
 
 
-export const loadRequest = () => action(EnterpriseTypes.REQUEST);
+export const getListEnterprises = () => action(EnterpriseTypes.REQUEST);
 
-export const loadSuccess = (data: Enterprise[]) => action(EnterpriseTypes.SUCCESS, { data });
+export const onSuccess = (data: Enterprise[]) => action(EnterpriseTypes.SUCCESS, { data });
 
-export const loadFailure = () => action(EnterpriseTypes.ERROR);
+export const onError = () => action(EnterpriseTypes.ERROR);

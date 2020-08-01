@@ -3,23 +3,32 @@ import { Enterprise } from "./models/classes/enterprise";
 import { DispatchProps } from "./models/interfaces/dispatch";
 import { StateProps } from "./models/interfaces/state";
 import store from "./store";
-import { loadRequest } from "./store/ducks/enterprises/actions";
+import { getListEnterprises } from "./store/ducks/enterprises/actions";
 import { Auth } from "./views/Auth";
-// const App = ;
+import { Home } from "./views/Home";
 
-export default class App extends Component {
+export default class App extends Component<any> {
   public enterprises: Enterprise[];
   constructor(props: StateProps & DispatchProps) {
     super(props);
     this.enterprises = props.enterprises;
   }
-  componentDidMount() {}
+  componentDidMount() {
+    this.getProps();
+  }
+
+  private getProps() {
+    store.dispatch(getListEnterprises());
+  }
   render() {
     return (
-      <Auth
-        loadRequest={() => store.dispatch(loadRequest())}
-        enterprises={this.enterprises}
-      />
+      <>
+        <Auth />
+       { false && <Home
+          getListEnterprises={() => this.getProps()}
+          enterprises={this.enterprises}
+        />}
+      </>
     );
   }
 }

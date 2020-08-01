@@ -1,14 +1,18 @@
-import { call, put } from 'redux-saga/effects';
-import { User } from '../../../models/classes/user';
+import { call } from 'redux-saga/effects';
 import { RequestAuth } from '../../../models/enum/request-auth';
 import { AuthService } from '../../../services/auth';
-import { login } from './actions';
+import { LocalStorageManager } from '../../../utils/local-storage-manager';
 
 export class AuthSaga extends AuthService {
+  constructor(private local: LocalStorageManager) {
+    super();
+  }
   public * login(auth: any) {
     try {
-      const response: User = yield call(this.api.post, this.base_sign_in, auth.payload);
+      const response = yield call(this.api.post, this.base_sign_in, { ...auth.payload });
       console.log(response);
+      const authorization = { 'access-token': response.headers["access-token"], client: response.headers.client, uid: response.headers.uid };
+      this.local.setItem('client', JSON.stringify(authorization));
     } catch (err) {
       yield console.log(err);
     }
@@ -16,9 +20,10 @@ export class AuthSaga extends AuthService {
   public * logout() {
     try {
       yield call(this.api.post, this.base_sign_in, RequestAuth);
-      yield put(login(RequestAuth));
+      yield console.log('success');
     } catch (err) {
       yield console.log(err);
     }
   };
+
 } 

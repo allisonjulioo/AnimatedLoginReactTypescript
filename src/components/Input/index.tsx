@@ -1,4 +1,4 @@
-import React, { Component, FormEvent } from "react";
+import React, { ChangeEvent, Component } from "react";
 import { InputProp, InputState } from "../../models/interfaces/input";
 import "./style.scss";
 
@@ -15,9 +15,10 @@ export class Input extends Component<InputProp, InputState> {
     };
   }
 
-  changeValue(event: FormEvent<HTMLInputElement>) {
-    const value = event.currentTarget.value;
+  changeValue(event: ChangeEvent<HTMLInputElement>) {
+    const value = event.target.value;
     this.setState({ value, error: "" });
+    this.props.onChange(event);
   }
 
   handleKeyPress(event: KeyboardEvent) {
@@ -40,16 +41,22 @@ export class Input extends Component<InputProp, InputState> {
             src={require(`../../assets/${this.props.icon}.svg`)}
             alt=""
           />
-          {active && value && predicted && predicted.includes(value) && (
-            <p className="predicted">{predicted}</p>
-          )}
+          {active &&
+            this.props.value &&
+            predicted &&
+            predicted.includes(value) && (
+              <p className="predicted">{predicted}</p>
+            )}
           <input
             id={this.props.id}
-            type="text"
+            type={this.props.type || "text"}
             autoComplete="off"
-            value={value}
             placeholder={label}
-            onChange={this.changeValue.bind(this)}
+            onChange={(event) => {
+              this.setState({ value: event.target.value });
+              this.changeValue.bind(this);
+              this.props.onChange(event);
+            }}
             onKeyPress={() => this.handleKeyPress.bind(this)}
             onFocus={() =>
               !locked && this.setState({ active: true, focused: true })

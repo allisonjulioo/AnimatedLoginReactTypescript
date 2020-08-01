@@ -3,8 +3,8 @@ import { AuthState } from '../../../models/interfaces/auth';
 import { AuthTypes } from '../../../models/types/auth';
 
 const INITIAL_STATE: AuthState = {
-  email: 'testeapple@ioasys.com.br',
-  password: '12341234',
+  email: '',
+  password: '',
 };
 
 const reducer: Reducer<AuthState> = (state = INITIAL_STATE, action) => {

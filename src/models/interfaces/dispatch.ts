@@ -1,3 +1,3 @@
 export interface DispatchProps {
-  loadRequest(): void;
+  getListEnterprises(): void;
 }

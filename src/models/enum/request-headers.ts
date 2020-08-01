@@ -1,6 +1,8 @@
-export enum RequestHeaders {
-  'Content-Type' = 'application/json',
-  'access-token' = 'L3A-CLEHWXA-YXVsnqzXpQ',
-  'client' = '-CD_QgfmCXB7aF6F008-PQ',
-  'uid' = 'testeapple@ioasys.com.br'
+
+import { LocalStorageManager } from '../../utils/local-storage-manager';
+export class RequestHeaders extends LocalStorageManager {
+  public 'Content-Type': string = 'application/json';
+  public 'access-token': string = this.getItem('client')["access-token"];
+  public client: string = this.getItem('client').client;
+  public uid: string = this.getItem('client').uid;
 }

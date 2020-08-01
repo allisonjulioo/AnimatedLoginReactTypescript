@@ -58,7 +58,7 @@
     transition: all 0.1s ease;
     transform: translateY(0) scale(1);
   }
-  &:hover {
+  &.active {
     text-align: center;
     transition: all 0.2s ease-in-out 0.2s;
     color: $white;

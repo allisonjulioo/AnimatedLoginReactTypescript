@@ -1,4 +1,5 @@
-export enum RequestAuth {
-  'email' = 'testeapple@ioasys.com.br',
-  'password' = '12341234',
+
+export class RequestAuth {
+  email?: string;
+  password?: string;
 }
