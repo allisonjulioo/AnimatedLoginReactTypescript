@@ -1,6 +1,3 @@
-# README #
-
-
 # MUITO IMPORTANTE ANTES DE QUALQUER COISA
 
 ## Estou usando uma lib de animações "FRAMER MOTION" ela está com um bug que deixa a aplicação incessível 
@@ -17,7 +14,7 @@ node_modules\framer-motion\dist\framer-motion.d.ts
 
 remova a propriedade `readonly` e salve. após isso pode rodar o projeto normalmente. 
 
-Adianto que não deu para fazer tudo que imaginei, dediquei um tempo maior a arquitetura e configuração de ambiete
+Adianto que não deu para fazer tudo que imaginei, dediquei um tempo maior a arquitetura e configuração de ambiete #
 
 
 
