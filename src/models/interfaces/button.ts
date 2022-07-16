@@ -1,4 +1,4 @@
-import { FormEvent, ReactNode } from "react";
+import {FormEvent, ReactNode} from 'react';
 
 export interface IProps {
   active?: boolean;

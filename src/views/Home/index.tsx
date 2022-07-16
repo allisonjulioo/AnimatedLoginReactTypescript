@@ -1,15 +1,18 @@
-import React, { Component } from "react";
-import { DispatchProps } from "../../models/interfaces/dispatch";
-import { StateProps } from "../../models/interfaces/state";
-import "./style.scss";
+import {DispatchProps} from 'models/interfaces/dispatch';
+import {StateProps} from 'models/interfaces/state';
+import React, {Component} from 'react';
+import './style.scss';
 
 export class Home extends Component<StateProps & DispatchProps> {
   componentDidMount() {}
   render() {
-    const { enterprises } = this.props;
+    const {enterprises} = this.props;
+
     return (
       <div>
-        <h1>Home</h1>
+        {enterprises?.map((item, key) => (
+          <span key={key}>{item.facebook}</span>
+        ))}
       </div>
     );
   }

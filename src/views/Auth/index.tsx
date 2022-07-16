@@ -1,14 +1,14 @@
-import { motion } from "framer-motion";
-import React, { Component, FormEvent } from "react";
-import Button from "../../components/Button";
-import { Input } from "../../components/Input";
-import Loading from "../../components/loading";
-import Logo from "../../components/logo";
-import { IAnimation } from "../../models/interfaces/animation";
-import { AuthState } from "../../models/interfaces/auth";
-import store from "../../store";
-import { login } from "../../store/ducks/auth/actions";
-import "./style.scss";
+import Button from 'components/Button';
+import {Input} from 'components/Input';
+import Loading from 'components/loading';
+import Logo from 'components/logo';
+import {motion} from 'framer-motion';
+import {IAnimation} from 'models/interfaces/animation';
+import {AuthState} from 'models/interfaces/auth';
+import React, {Component, FormEvent} from 'react';
+import store from 'store';
+import {login} from 'store/ducks/auth/actions';
+import './style.scss';
 
 export class Auth extends Component<any, IAnimation & AuthState> {
   private variants = {
@@ -16,14 +16,14 @@ export class Auth extends Component<any, IAnimation & AuthState> {
       y: 0,
       opacity: 1,
       transition: {
-        y: { stiffness: 1000, velocity: -100 },
+        y: {stiffness: 1000, velocity: -100},
       },
     },
     closed: {
       y: 50,
       opacity: 0,
       transition: {
-        y: { stiffness: 1000 },
+        y: {stiffness: 1000},
       },
     },
   };
@@ -32,43 +32,46 @@ export class Auth extends Component<any, IAnimation & AuthState> {
     this.state = {
       isVisible: false,
       isOpen: false,
-      email: " ",
-      password: " ",
+      email: ' ',
+      password: ' ',
     };
   }
+
   handleChangeInput(e: any) {
-    console.log(e);
+    return;
   }
+
   componentDidMount() {
     setTimeout(() => {
-      this.setState({ isVisible: true });
+      this.setState({isVisible: true});
     }, 2000);
   }
+
   private submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const { email, password } = this.state;
-    store.dispatch(login({ email, password }));
+    const {email, password} = this.state;
+    store.dispatch(login({email, password}));
   }
 
   render() {
-    const { isVisible } = this.state;
+    const {isVisible} = this.state;
     return (
-      <div id="auth">
+      <div id='auth'>
         <motion.section
           initial={false}
-          animate={!isVisible ? "open" : "closed"}
+          animate={!isVisible ? 'open' : 'closed'}
           variants={this.variants}
         >
           <Loading />
         </motion.section>
         <motion.div
-          className="container"
+          className='container'
           initial={false}
-          animate={isVisible ? "open" : "closed"}
+          animate={isVisible ? 'open' : 'closed'}
           variants={this.variants}
         >
-          <motion.div className="head">
-            <figure className="branding">
+          <motion.div className='head'>
+            <figure className='branding'>
               <Logo />
             </figure>
             <motion.h4 variants={this.variants}>
@@ -79,36 +82,36 @@ export class Auth extends Component<any, IAnimation & AuthState> {
               accumsan.
             </motion.span>
           </motion.div>
-          <div className="content">
-            <form onSubmit={(event) => this.submit(event)}>
+          <div className='content'>
+            <form onSubmit={event => this.submit(event)}>
               <Input
-                icon="email"
-                id={"1"}
-                onChange={(event) =>
-                  this.setState({ email: event.target.value })
-                }
-                label="E-mail"
-                predicted=""
+                icon='email'
+                id={'1'}
+                onChange={event => this.setState({email: event.target.value})}
+                label='E-mail'
+                predicted=''
                 locked={false}
                 active={false}
               />
               <Input
-                icon="password"
-                id={"2"}
-                type={"password"}
-                label="Senha"
-                onChange={(event) =>
-                  this.setState({ password: event.target.value })
+                icon='password'
+                id={'2'}
+                type={'password'}
+                label='Senha'
+                onChange={event =>
+                  this.setState({password: event.target.value})
                 }
-                predicted=""
+                predicted=''
                 locked={false}
                 active={false}
               />
               <Button
                 active={
-                  this.state.email.length > 3 && this.state.password.length > 2 || false
+                  (this.state.email.length > 3 &&
+                    this.state.password.length > 2) ||
+                  false
                 }
-                onClick={(event) => this.submit(event)}
+                onClick={event => this.submit(event)}
               >
                 ENTRAR
               </Button>

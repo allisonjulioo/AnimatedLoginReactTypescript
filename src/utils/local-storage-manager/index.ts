@@ -1,4 +1,4 @@
-import { ContentHeader } from '../../models/interfaces/header';
+import {ContentHeader} from '../../models/interfaces/header';
 
 export class LocalStorageManager {
   public setItem(key: string, data: string) {

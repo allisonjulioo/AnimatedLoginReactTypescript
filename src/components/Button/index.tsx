@@ -1,16 +1,16 @@
-import React from "react";
-import { IProps } from "../../models/interfaces/button";
-import "./style.scss";
+import {IProps} from 'models/interfaces/button';
+import React from 'react';
+import './style.scss';
 
-export default ({ children, active = true, onClick, ...props }: IProps) => (
-  <div id="container">
+const Button = ({children, active = true, onClick, ...props}: IProps) => (
+  <div id='container'>
     <button
-      id="button"
+      id='button'
       {...props}
-      className={(active && "active") || ""}
+      className={(active && 'active') || ''}
       disabled={!active}
     >
-      <small className="children" onClick={(event) => onClick}>
+      <small className='children' onClick={() => onClick}>
         {children}
       </small>
       <samp></samp>
@@ -20,3 +20,5 @@ export default ({ children, active = true, onClick, ...props }: IProps) => (
     </button>
   </div>
 );
+
+export default Button;

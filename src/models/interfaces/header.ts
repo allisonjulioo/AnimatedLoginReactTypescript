@@ -1,13 +1,13 @@
 export interface HeaderState {
-  header: ContentHeader
+  header: ContentHeader;
 }
 
 export interface ContentHeader {
-  'access-token': string,
-  'cache-control': string,
-  client: string,
-  'content-type': string,
-  expiry: string,
-  'token-type': string,
-  uid: string,
+  'access-token': string;
+  'cache-control': string;
+  client: string;
+  'content-type': string;
+  expiry: string;
+  'token-type': string;
+  uid: string;
 }

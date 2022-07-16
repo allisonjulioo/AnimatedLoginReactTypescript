@@ -1,5 +1,5 @@
-import { Constants } from "./constants";
-import { EnterpriseType } from "./enterpriseType";
+import {Constants} from './constants';
+import {EnterpriseType} from './enterpriseType';
 
 export class Enterprise extends Constants {
   id?: number;

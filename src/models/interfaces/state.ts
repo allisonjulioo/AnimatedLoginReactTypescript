@@ -1,4 +1,4 @@
-import { Enterprise } from "../classes/enterprise";
+import {Enterprise} from '../classes/enterprise';
 
 export interface StateProps {
   enterprises: Enterprise[];

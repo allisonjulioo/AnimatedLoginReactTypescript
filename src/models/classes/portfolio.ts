@@ -1,4 +1,4 @@
-import { Enterprise } from "./enterprise";
+import {Enterprise} from './enterprise';
 
 export class Portfolio {
   enterprises_number?: number;
